@@ -13,13 +13,13 @@
   position: absolute;
 }
 
-.para[position="2"]{
+.para.img[position="2"]{
   float: right;
   max-width: 50%;
   padding-left: 10px;
 }
 
-.para[position="1"]{
+.para.img[position="1"]{
   float: left;
   max-width: 50%;
   padding-right: 10px;
