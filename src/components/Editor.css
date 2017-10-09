@@ -1,0 +1,141 @@
+.editor{
+  height: 100%;
+  text-align: left;
+}
+
+.editor>.toolbar{
+  position: relative;
+  height: 100%;
+  float: left;
+  background-color: #00796b;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  cursor: pointer;
+}
+
+.toolbar {
+  width: 200px;
+}
+
+.toolbar.close{
+  width: 90px;
+}
+
+.toolbar *{
+  color:#ffffff;
+}
+
+.toolbar .toolbar-title{
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  padding: 10px 8px;
+  background-color: #00796b;
+  box-shadow: 0 1px 2px 0 #004d40;
+  height: 48px;
+  line-height: 32px;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.toolbar>.item-group{
+  position: absolute;
+  top: 48px;
+  width: 100%;
+  bottom: 0;
+  padding: 0 8px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+.item-group>p{
+  color: #a7ffeb;
+  padding: 10px 0;
+}
+
+.item-group>.item{
+  text-align: center;
+  border: 2px dashed #004d40;
+  border-radius: 2px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.editor>.controlbar{
+  height: 100%;
+  float: right;
+  background-color: #ffffff;
+  border-left: 1px solid #ccc;
+  padding: 8px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.editor>.doc{
+  height: 100%;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  background-color: #efefef;
+  position: relative;
+}
+
+.doc>.wrapper{
+  min-width: 680px;
+}
+
+.doc .paper{
+  width: 640px;
+  min-height: 200px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px #bbb;
+  margin: 10px auto 20px;
+  padding: 10px;
+  outline: none;
+}
+
+.doc>.btn-group{
+  position: sticky;
+  bottom: 20px;
+  right: 10px;
+  width: 48px;
+  background-color: transparent;
+  border-radius:20px;
+  /*border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 1px;
+  border-bottom-left-radius: 1px;*/
+  padding: 4px;
+  z-index: 20px;
+}
+
+.btn-group .btn:first-child{
+  margin-top: 0;
+}
+
+.btn-group .btn{
+  display: block;
+  border-radius: 20px;
+  padding: 0;
+  margin:8px 0 0;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color:#fff;
+  border: 1px solid #fff;
+  background-color: rgba(0,105,92,0.8);
+  outline: none;
+}
+
+.btn:hover{
+  background-color: rgba(0,105,92,0.9);
+}
+
+.controlbar .btns{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 10px 0;
+}
