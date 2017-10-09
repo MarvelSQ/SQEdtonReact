@@ -25,8 +25,15 @@ class Toolbar extends Component{
 
   dragStart = (e) => {
     if(e.target.dataset.drag){
-    this.props.drag(true);
-    e.dataTransfer.setData('new',this.state.base[e.target.dataset.drag].value);
+      e.dataTransfer.setDragImage(e.target,0,0);
+      let value = this.state.base[e.target.dataset.drag].value;
+      if(value!=='a'){
+        this.props.drag(true);
+        e.dataTransfer.setData('new',value);
+      } else {
+        e.dataTransfer.dropEffect='copyMove';
+        e.dataTransfer.setData('link',value);
+      }
   }
   }
 
