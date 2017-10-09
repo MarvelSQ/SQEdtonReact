@@ -13,11 +13,8 @@
  */
 const isAllElements = (type, el) => {
   if (el.innerText !== '') {
-    let elc = el.cloneNode(true)
-    let array = [...elc.querySelectorAll(type)]
-    for (let cell of array) {
-      cell.remove();
-    }
+    let elc = el.cloneNode(true);
+    [...elc.querySelectorAll(type)].forEach(e=>e.remove());
     return elc.innerText === ''
   } else {
     return false;
@@ -340,6 +337,28 @@ function replaceElementIn(reg,node){
   node.normalize();
 }
 
+function replaceWidthChild(element){
+  if(element.parentNode&&element.childNodes){
+    let newFrag = document.createDocumentFragment();
+    [...element.childNodes].forEach(e=>{
+      newFrag.appendChild(e);
+    })
+    element.parentNode.insertBefore(newFrag);
+    element.normalize();
+    element.remove();
+  }
+}
+
+function camlToHypen(str){
+  return str.replace(/([A-Z])/g, (word,i)=>{
+    return '-'+word.toLowerCase();
+  });
+}
+
 export default {
   replaceElementIn,
+  replaceWidthChild,
+  wrapParent,
+  getParent,
+  camlToHypen,
 }
