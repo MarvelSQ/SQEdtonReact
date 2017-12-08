@@ -29,6 +29,20 @@ class Controlbar extends Component {
     });
   }
 
+  componentWillUpdate=(props)=>{
+    if(props.edt){
+      if(!this.state.bind){
+      this.setState({bind:true});
+    }
+    }
+  }
+
+  btnClick = (type)=>{
+    if(this.state.bind){
+      this.props.edt.command({level:0,type})
+    }
+  }
+
   render() {
     const formItemLayout = {
       labelCol: {
@@ -53,21 +67,17 @@ class Controlbar extends Component {
           <Tabs.TabPane tab="Font&Para" key="1">
             <b>Inline</b>
             <div className="btns">
-              <Button size="small">
+              <Button size="small" onClick={()=>this.btnClick(0)}>
                 <b>B</b>
               </Button>
-              <Button size="small">
+              <Button size="small" onClick={()=>this.btnClick(1)}>
                 <i>I</i>
               </Button>
-              <Button size="small">
-                <u>U</u>
-              </Button>
-              <Button size="small">
+              <Button size="small" onClick={()=>this.btnClick(2)}>
                 <del>S</del>
               </Button>
-              <Button size="small">SU<sub>B</sub>
-              </Button>
-              <Button size="small">SU<sup>P</sup>
+              <Button size="small" onClick={()=>this.btnClick(3)}>
+                <u>U</u>
               </Button>
             </div>
             <Form>

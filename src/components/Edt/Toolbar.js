@@ -16,6 +16,9 @@ class Toolbar extends Component{
         {value:'a',full:'Link',less:'A',},
       ],
       open:true,
+      dragstart:(e)=>e,
+      dragend:(e)=>e,
+      bind:false,
     }
   }
 
@@ -23,36 +26,41 @@ class Toolbar extends Component{
     this.setState({open:!this.state.open})
   }
 
-  dragStart = (e) => {
-    if(e.target.dataset.drag){
-      e.dataTransfer.setDragImage(e.target,0,0);
-      let value = this.state.base[e.target.dataset.drag].value;
-      if(value!=='a'){
-        this.props.drag(true);
-        e.dataTransfer.setData('new',value);
-      } else {
-        e.dataTransfer.dropEffect='copyMove';
-        e.dataTransfer.setData('link',value);
-      }
-  }
-  }
-
-  dragEnd = (e) => {
-    this.props.drag(false);
-  }
+  // dragStart = (e) => {
+  //   if(e.target.dataset.drag){
+  //     e.dataTransfer.setDragImage(e.target,0,0);
+  //     let value = this.state.base[e.target.dataset.drag].value;
+  //     if(value!=='a'){
+  //       this.props.drag(true);
+  //       e.dataTransfer.setData('new',value);
+  //     } else {
+  //       e.dataTransfer.dropEffect='copyMove';
+  //       e.dataTransfer.setData('link',value);
+  //     }
+  // }
+  // }
 
   componentDidMount(){
 
+  }
+
+  componentWillUpdate=(props)=>{
+    if(props.edt){
+      let {dragstart,dragend} = props.edt.getDragin()
+      if(!this.state.bind){
+      this.setState({bind:true,dragstart,dragend});
+    }
+    }
   }
 
   render(){
     return (
       <div className={this.state.open?'toolbar':'toolbar close'}>
         <h2 className="toolbar-title" onClick={this.handleMenu}>SQEdt{this.state.open?' on React':''}</h2>
-        <div className="item-group" onDragStart={this.dragStart} onDragEnd={this.dragEnd}>
+        <div className="item-group" onDragStart={this.state.dragstart} onDragEnd={this.state.dragend}>
         <p>Base</p>
         {
-          this.state.base.map((e,i)=><div className="item" draggable="true" data-drag={i} key={i}>{this.state.open?e.full:e.less}</div>)
+          this.state.base.map((e,i)=><div className="item" draggable="true" data-edt-drag={e.value} key={i}>{this.state.open?e.full:e.less}</div>)
         }
       </div>
       </div>

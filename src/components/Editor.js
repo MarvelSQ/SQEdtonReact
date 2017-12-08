@@ -3,6 +3,7 @@ import './Editor.css';
 import Doc from './Edt/Doc';
 import Toolbar from './Edt/Toolbar';
 import Controlbar from './Edt/Controlbar';
+import {connect} from 'react-redux';
 
 class Editor extends Component {
   constructor(props){
@@ -17,14 +18,21 @@ class Editor extends Component {
   }
 
   render(){
+    const { dispatch, edt } = this.props
     return (
       <div className="editor">
-        <Toolbar drag={this.drag}></Toolbar>
-        <Controlbar></Controlbar>
-        <Doc layoutMode={this.state.toolDrag}></Doc>
+        <Toolbar edt={edt}></Toolbar>
+        <Controlbar edt={edt}></Controlbar>
+        <Doc edt={edt} dispatch={dispatch}></Doc>
       </div>
     );
   }
 }
 
-export default Editor;
+function edt(state) {
+  return {
+    edt: state.edt,
+  }
+}
+
+export default connect(edt)(Editor);
